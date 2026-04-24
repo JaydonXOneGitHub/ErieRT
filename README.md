@@ -1,4 +1,4 @@
-![Logo](https://www.github.com/JaydonXOneGitHub/eriesuite/blob/main/ErieRT.png)
+![Logo](https://github.com/JaydonXOneGitHub/eriesuite/blob/main/ErieRT.png)
 
 # About ErieRT
 ErieRT is a Lua runtime built in Rust designed for minimal setup and powerful extensibility.<br>
