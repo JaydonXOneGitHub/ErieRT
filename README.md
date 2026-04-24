@@ -61,7 +61,7 @@ void entry(lua_State* lua, void* _rust_lua, void* _rust_engine_api)
 }
 ```
 
-#Why ErieRT?
+# Why ErieRT?
 
 I had a project I was working on.<br>
 It was initially built in Rust with Lua as a scripting layer.<br><br>
