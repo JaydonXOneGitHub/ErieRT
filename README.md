@@ -49,6 +49,7 @@ ErieRT extensions can be created in languages including, but not limited to:<br>
 <li>Zig</li>
 <li>Many more</li>
 </ul>
+
 As long as they expose a way to bind to Lua, it can work.<br>
 `erieextension` is a good starting point for making Rust-based extensions.<br>
 However, this is an example of how an entry point would look like in C:<br>
