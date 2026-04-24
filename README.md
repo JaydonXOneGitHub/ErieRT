@@ -63,6 +63,15 @@ void entry(lua_State* lua, void* _rust_lua, void* _rust_engine_api)
     // write extension code here
 }
 ```
+Extensions are defined in project files like this:  
+```json
+{
+    "windows_path": "extension/extension.dll",
+    "macos_path": "extension/libextension.dylib",
+    "linux_path": "extension/libextension.so",
+    "entry": "extension_entry"
+}
+```
 
 # Why ErieRT?
 
