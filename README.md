@@ -4,7 +4,7 @@
 
 ErieRT is a Lua runtime built in Rust designed for minimal setup and powerful extensibility.<br>
 ErieRT features some built-in types and functions to make basic web APIs or CLI apps without reliance on extensions.<br>
-ErieRT also features full backwards-compatibility with Lua's standard library, albeit not completely for bundled applications.
+ErieRT also features full backwards-compatibility with Lua's standard library, albeit without being able to read Lua's standard library files for bundled applications.
 
 # How to Use
 
