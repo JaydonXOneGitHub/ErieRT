@@ -79,8 +79,6 @@ pub async fn execute_command(lua: Arc<Lua>, args: Vec<String>) -> mlua::Result<(
 
             let file_name = format!("{}/{}.ertpk", dir, file_name);
 
-            println!("{}", file_name);
-
             if std::fs::exists(&file_name).expect("File couldn't be validated!") {
                 run_archive(lua, &file_name, true).await
             }
