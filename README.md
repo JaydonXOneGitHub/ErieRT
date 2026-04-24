@@ -1,10 +1,12 @@
 ![ErieRT Logo](https://github.com/JaydonXOneGitHub/eriesuite/blob/main/ErieRT.png)
 
 # About ErieRT
+
 ErieRT is a Lua runtime built in Rust designed for minimal setup and powerful extensibility.<br>
 ErieRT features some built-in types and functions to make apps without reliance on extensions.<br>
 
 # How to Use
+
 These are the definitions of ErieRT's command-line arguments:
 ```txt
 doc [file]: Generates Lua doc from built-in types out to [file].
@@ -29,6 +31,7 @@ exec [archivefile]: Runs the contents in the archive.
 ```
 
 # Build from Scratch
+
 To build from scratch, simply use the following command:<br><br>
 `git clone https://www.github.com/JaydonXOneGitHub/eriesuite`<br><br>
 This will copy ErieRT (`eriert`), the API crate (`eriert-api`), and an extension template (`erieextension`).<br><br>
@@ -36,8 +39,9 @@ To build ErieRT, simply run this command in the `eriert` folder:<br><br>
 `cargo build --release`<br><br>
 
 # Extensions
+
 ErieRT extensions can be created in languages including, but not limited to:<br>
-<ul>  
+<ul>
 <li>C</li>
 <li>C++</li>
 <li>Go</li>
@@ -57,6 +61,7 @@ void entry(lua_State* lua, void* _rust_lua, void* _rust_engine_api)
 ```
 
 #Why ErieRT?
+
 I had a project I was working on.<br>
 It was initially built in Rust with Lua as a scripting layer.<br><br>
 However, I soon found that Rust would mean changes wouldn't be able to happen fast enough.<br>
