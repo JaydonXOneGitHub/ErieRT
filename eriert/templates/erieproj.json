@@ -1,0 +1,7 @@
+{
+    "name": "erieproj",
+    "exec": {
+        "script": "res://main.lua"
+    },
+    "extensions": []
+}
