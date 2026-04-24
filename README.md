@@ -37,6 +37,8 @@ To build from scratch, simply use the following command:<br><br>
 This will copy ErieRT (`eriert`), the API crate (`eriert-api`), and an extension template (`erieextension`).<br><br>
 To build ErieRT, simply run this command in the `eriert` folder:<br><br>
 `cargo build --release`<br><br>
+Additionally, if working on Unix (or more likely just Linux), use the following command to copy ErieRT to the path:  <br>
+`cp target/release/eriert ~/HOME/.local/bin/eriert`
 
 # Extensions
 
