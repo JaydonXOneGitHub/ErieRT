@@ -63,15 +63,23 @@ pub async fn execute_command(lua: Arc<Lua>, args: Vec<String>) -> mlua::Result<(
             Result::Ok(())
         },
         _ => {
-            let exec = args.get(0).expect("Couldn't get first argument!");
+            let exec = std::env::current_exe().expect("Couldn't get current executable path!");
 
             let path: &Path = exec.as_ref();
+
+            let dir = path.parent().map(
+                |p| p.as_os_str().to_str().expect("Unable to convert &OsStr to &str")
+            );
+
+            let dir = dir.unwrap_or("");
 
             let file_name = path.file_name().expect("File ends in \"..\" for some reason!");
 
             let file_name = file_name.to_str().expect("Unable to convert &OsStr to &str");
 
-            let file_name = format!("{}.ertpk", file_name);
+            let file_name = format!("{}/{}.ertpk", dir, file_name);
+
+            println!("{}", file_name);
 
             if std::fs::exists(&file_name).expect("File couldn't be validated!") {
                 run_archive(lua, &file_name, true).await
