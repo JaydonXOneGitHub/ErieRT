@@ -47,13 +47,13 @@ ErieRT extensions can be created in languages including, but not limited to:<br>
 </ul>
 As long as they expose a way to bind to Lua, it can work.<br>
 `erieextension` is a good starting point for making Rust-based extensions.<br>
-However, this is an example of how an entry point would look like in C:  
-```c  
+However, this is an example of how an entry point would look like in C:<br>
+```c
 // The other two pointers should be ignored by languages other than Rust.
-void entry(lua_State* lua, void* _rust_lua, void* _rust_engine_api)  
-{  
+void entry(lua_State* lua, void* _rust_lua, void* _rust_engine_api)
+{
     // write extension code here
-}  
+}
 ```
 
 #Why ErieRT?
