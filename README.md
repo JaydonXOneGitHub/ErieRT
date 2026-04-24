@@ -37,12 +37,14 @@ To build ErieRT, simply run this command in the `eriert` folder:<br><br>
 
 # Extensions
 ErieRT extensions can be created in languages including, but not limited to:<br>
-- C
-- C++
-- Go
-- Rust
-- Zig
-- And many more<br>
+<ul>  
+<li>C</li>
+<li>C++</li>
+<li>Go</li>
+<li>Rust</li>
+<li>Zig</li>
+<li>Many more</li>
+</ul>
 As long as they expose a way to bind to Lua, it can work.<br>
 `erieextension` is a good starting point for making Rust-based extensions.<br>
 However, this is an example of how an entry point would look like in C:  
