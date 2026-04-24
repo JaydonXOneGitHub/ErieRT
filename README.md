@@ -1,4 +1,4 @@
-![Logo](https://github.com/JaydonXOneGitHub/eriesuite/blob/main/ErieRT.png)
+![ErieRT Logo](https://github.com/JaydonXOneGitHub/eriesuite/blob/main/ErieRT.png)
 
 # About ErieRT
 ErieRT is a Lua runtime built in Rust designed for minimal setup and powerful extensibility.<br>
@@ -42,7 +42,7 @@ ErieRT extensions can be created in languages including, but not limited to:<br>
 - Go
 - Rust
 - Zig
-- And many more
+- And many more<br>
 As long as they expose a way to bind to Lua, it can work.<br>
 `erieextension` is a good starting point for making Rust-based extensions.<br>
 However, this is an example of how an entry point would look like in C:  
