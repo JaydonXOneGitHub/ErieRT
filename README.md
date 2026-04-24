@@ -35,7 +35,7 @@ This will copy ErieRT (`eriert`), the API crate (`eriert-api`), and an extension
 To build ErieRT, simply run this command in the `eriert` folder:<br><br>
 `cargo build --release`<br><br>
 
-# Extensions
+# &#1F9E9 Extensions
 ErieRT extensions can be created in languages including, but not limited to:<br>
 <ul>  
 <li>C</li>
