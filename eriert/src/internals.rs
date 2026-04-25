@@ -57,11 +57,6 @@ pub async fn execute_command(lua: Arc<Lua>, args: Vec<String>) -> mlua::Result<(
         (Option::Some("build"), Option::Some(file)) => {
             execute_builder(file).await
         },
-        (Option::Some(cmd), Option::Some(file)) => {
-            println!("Invalid options given. Use `eriert help` for list of options.");
-            println!("CMD: {}, FILE: {}", cmd, file);
-            Result::Ok(())
-        },
         _ => {
             let exec = std::env::current_exe().expect("Couldn't get current executable path!");
 
