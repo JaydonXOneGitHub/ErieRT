@@ -89,7 +89,10 @@ pub fn read_project(project_file: &String, engine_api: SharedEngineAPI) -> mlua:
     };
 }
 
-pub async fn execute_project(lua: Arc<Lua>, project_file: Option<&String>, engine_api: SharedEngineAPI) -> mlua::Result<()> {
+pub async fn execute_project(
+    lua: Arc<Lua>, project_file: Option<&String>, 
+    engine_api: SharedEngineAPI, root: Option<String>
+) -> mlua::Result<()> {
     let res = match project_file {
         Option::Some(project_file) => read_project(project_file, engine_api.clone()),
         Option::None => Result::Err(mlua::Error::RuntimeError("No project file given!".into()))
@@ -101,22 +104,39 @@ pub async fn execute_project(lua: Arc<Lua>, project_file: Option<&String>, engin
 
     let project = res.ok().unwrap();
 
-    return load_project(lua, project, engine_api).await;
+    return load_project(lua, project, engine_api, root).await;
 }
 
-pub async fn load_project(lua: Arc<Lua>, project: Project, engine_api: SharedEngineAPI) -> mlua::Result<()> {
-    let libraries: Vec<(mlua::Result<Library>, String)> = project.extensions.iter().map(|extensions| {
-        let lib = unsafe {
-            let path = extensions
-                .get_lib_path()
-                .map(|s| s.clone())
-                .unwrap_or(extensions.linux_path.clone());
+pub async fn load_project(
+    lua: Arc<Lua>, project: Project, 
+    engine_api: SharedEngineAPI, root: Option<String>
+) -> mlua::Result<()> {
+    #[cfg(not(target_os = "windows"))]
+    let root = root.map(|s| s + "/");
 
-            Library::new(&path)
-                .map_err(|e| mlua::Error::RuntimeError(e.to_string()))
-        };
-        return (lib, extensions.entry.clone());
-    }).collect();
+    #[cfg(target_os = "windows")]
+    let root = root.map(|s| s + "\\");
+
+    let root_ref = root.as_ref();
+
+    let libraries: Vec<(mlua::Result<Library>, String)> = project
+        .extensions
+        .iter()
+        .map(|extensions| {
+            let lib = unsafe {
+                let root = root_ref.map(|s| s.as_str()).unwrap_or("");
+
+                let path = extensions
+                    .get_lib_path()
+                    .map(|s| format!("{}{}", root, s))
+                    .unwrap_or(format!("{}{}", root, extensions.linux_path));
+
+                Library::new(&path)
+                    .map_err(|e| mlua::Error::RuntimeError(e.to_string()))
+            };
+            return (lib, extensions.entry.clone());
+        })
+        .collect();
 
     for (res, entry) in libraries.iter() {
         match res {

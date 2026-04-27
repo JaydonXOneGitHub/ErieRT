@@ -48,9 +48,9 @@ pub async fn execute_command(lua: Arc<Lua>, args: Vec<String>) -> mlua::Result<(
         (Option::Some("new"), file) => create_new_project(file),
         (Option::Some("runproj"), file) => {
             let engine_state: SharedEngineAPI = SharedEngineAPI::create(EngineState::new(FSHandler::Normal, false));
-            execute_project(lua, file, engine_state).await
+            execute_project(lua, file, engine_state, Option::None).await
         },
-        (Option::Some("exec"), Option::Some(file)) => run_archive(lua, file, false).await,
+        (Option::Some("exec"), Option::Some(file)) => run_archive(lua, file, false, Option::None).await,
         (Option::Some("pack"), Option::Some(file)) => {
             execute_bundler(file, Option::None, Option::None).await
         },
@@ -75,7 +75,7 @@ pub async fn execute_command(lua: Arc<Lua>, args: Vec<String>) -> mlua::Result<(
             let file_name = format!("{}/{}.ertpk", dir, file_name);
 
             if std::fs::exists(&file_name).expect("File couldn't be validated!") {
-                run_archive(lua, &file_name, true).await
+                run_archive(lua, &file_name, true, format!("{}", dir).into()).await
             }
             else {
                 println!("Invalid options given. Use `eriert help` for list of options.");

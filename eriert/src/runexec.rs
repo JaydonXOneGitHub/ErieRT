@@ -9,7 +9,12 @@ use crate::{
     projecthandler::execute_project
 };
 
-pub async fn run_archive(lua: Arc<Lua>, file: &String, is_app: bool) -> mlua::Result<()> {
+pub async fn run_archive(
+    lua: Arc<Lua>, 
+    file: &String, 
+    is_app: bool,
+    root: Option<String>
+) -> mlua::Result<()> {
     let res = File::open(file);
 
     if let Result::Err(err) = res {
@@ -40,7 +45,7 @@ pub async fn run_archive(lua: Arc<Lua>, file: &String, is_app: bool) -> mlua::Re
 
     let file_name = format!("res://{}.json", file_name);
 
-    let res = execute_project(lua, Option::Some(&file_name), engine_api).await;
+    let res = execute_project(lua, Option::Some(&file_name), engine_api, root).await;
 
     return res;
 }
